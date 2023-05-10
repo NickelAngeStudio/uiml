@@ -26,6 +26,8 @@ COMPONENT name {  // Component name
 ### Example
 ```typescript
 // Definition of a checkbox component
+COMPONENT checkbox
+
 com checkbox {
     elements : {
         icon : img,     // The icon of the checkbox

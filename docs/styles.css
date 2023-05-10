@@ -11,6 +11,8 @@ body {
     position: fixed;
     height: 100%;
     overflow: auto;
+    text-align: center;
+      float: none;
   }
   
   .sidebar a {
@@ -30,27 +32,40 @@ body {
     color: white;
   }
   
-  iframe.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
-    border: none;
+  div.wrapper {
+    margin-left: 200px; 
     width:calc(100% - 200px);
+    height: 1000px;
+    
+  }
+
+  div.view {
+    padding: 10px 16px 16px 16px;
+    width: auto;
   }
   
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     .sidebar {
       width: 100%;
       height: auto;
       position: relative;
     }
     .sidebar a {float: left;}
-    iframe.content {margin-left: 0; width: 100%;}
+    
+    div.wrapper { margin-left: 0px; width: 100%;}
   }
-  
+  /*
   @media screen and (max-width: 400px) {
     .sidebar a {
       text-align: center;
       float: none;
     }
+  }
+  */
+
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
   }
