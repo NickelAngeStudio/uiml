@@ -7,15 +7,31 @@ It notably uses states and styles to provide an highly customizable and modulabl
 ## Motivation
 I created this standard as a guideline to create my own native, portable, multi-platform user interface engine and want to share my work to the open source community.
 
-## Section
-* component
-* style
-* localization
-* view
-* definition
+This standard can be used either by retained or immediate mode.
+
+## Defining a user interface
+TODO : Rewrite below :
+>User interface are usually defined by a [MVC pattern](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller). 
+>UIML controller is different and define how each component interact with the user via states. The model is all the components. The view are the components choosen. It also define localization as something important.
+
+### Components
+Define elements, value, states and transitions of a component.
+
+### Styles
+Define how component are displayed according to their states and platform target. Style should be swapable on runtime.
+
+### Dataset
+Set of data tuples used by components.
+
+### Localization
+Define interface orientation, text orientation, text content and icons for a set of language.
+
+### View
+Define components and data showed to the user.
+
 
 ## Inspirations
-Those section were inspired by those language :
+Multiple elements are inspired from those language :
 * C++ for definition
 * Rust for components
 * CSS for styles
