@@ -1,7 +1,0 @@
-
-## Mandatory attribute
-value
-
-## Implied attributes
-position<br>
-size
