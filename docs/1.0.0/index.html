@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+type="module"
+src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"
+></script>
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <img src="https://github.com/NickelAngeStudio/tests_bin/blob/main/tests_bin.png?raw=true" width="64" height="64"/>
+  <a class="collapsible active" href="#home">Home</a>
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  <a class="collapsible" href="#news">Component</a>
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  <a class="collapsible" href="#contact">Contact</a>
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+  <a class="collapsible" href="#about">About</a>
+  <div class="content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  </div>
+</div>
+
+<div class="view">
+    <zero-md id="zero-md" src="md/home.md"></zero-md>
+</div>
+
+
+<!-- <iframe class="view" src="https://nickelangestudio.github.io/uiml/md/component"></iframe> -->
+</body>
+</html>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    var collapsible = document.getElementsByClassName("collapsible");
+    var j;
+
+    for (j = 0; j < coll.length; j++) {
+        var c = collapsible[j];
+        c.classList.remove("active");
+        c.nextElementSibling.style.display = "none";
+    }
+
+    document.getElementById("mdview").src = "md/components/attribute.md";
+
+
+    this.classList.add("active");
+    var content = this.nextElementSibling;
+    content.style.display = "block";
+  });
+}
+
+mdview.addEventListener('zero-md-rendered', (ev) => {
+    
+    console.log('1zero-md-rendered', document.getElementById("mdview").cache.body);
+    console.log('2zero-md-rendered', ev.body);
+  })
+
+</script>
