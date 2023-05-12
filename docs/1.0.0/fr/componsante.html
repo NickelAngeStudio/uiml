@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head><title>UIML - Componsante</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="User interface modeling language Componsante specifications">
+    <meta name="keywords" content="UIML User interface modeling language Componsante specifications">
+    <meta name="author" content="NickelAngeStudio">
+    <meta name="generator" content="bash pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../layout.css">
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css"/>
+</head>
+<body>
+
+
+<div class="sidebar">
+<img src="https://raw.githubusercontent.com/NickelAngeStudio/uiml/main/img/uiml.png" width="128" height="128" class="center">
+<a class="_accueil" href="index.html">Accueil</a><div class=""></div><a class="active" href="componsante.html">Componsante</a><a class="_attributs" href="attributs.html">Attributs</a><a class="_proprietes" href="proprietes.html">Proprietes</a><a class="_regles" href="regles.html">Regles</a><a class="_localisation" href="localisation.html">Localisation</a><a class="_dataset" href="dataset.html">Dataset</a><a class="_implementation" href="implementation.html">Implementation</a><a class="_nomenclature" href="nomenclature.html">Nomenclature</a><a class="_styles" href="styles.html">Styles</a>
+</div>
+<div class="content markdown-body"><h1 id="components">Components</h1>
+<p>Components are used to interact with the user. They contain <a href="attributes.md">attributes</a>, included components, <a href="properties.md">properties</a> and <a href="rules.md">rules</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co">// Comment</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>COMPONENT name {  <span class="co">// Component name</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    ATTRIBUTES {  <span class="co">// name type default (all mandatory, no null)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>        attr_name <span class="fu">attr_type</span>(size) default_value<span class="op">;</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>    }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>    COMPONENTS {  <span class="co">// Included components name type</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>        comp_name comp_type<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>    }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>    PROPERTIES {  <span class="co">// Possible properties used for rendering/value</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>        on hover enabled<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>    RULES {  <span class="co">// Rule sequence of properties</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>        property <span class="op">-&gt;</span> sequence <span class="op">-&gt;</span> result<span class="op">;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>    }</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>}</span></code></pre></div>
+<h3 id="example">Example</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co">// Definition of a checkbox component</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>COMPONENT checkbox</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>com checkbox {</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>    elements <span class="op">:</span> {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a>        icon <span class="op">:</span> img<span class="op">,</span>     <span class="co">// The icon of the checkbox</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>        label <span class="op">:</span> txt<span class="op">,</span>    <span class="co">// The label of the checkbox</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>    }<span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a>    </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true"></a>    <span class="co">// Possible states and transitions</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true"></a>    states <span class="op">:</span> {</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true"></a>        <span class="co">// Array of possible states of this component.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true"></a>        use <span class="op">:</span> [on<span class="op">,</span> hover<span class="op">,</span> focus<span class="op">,</span> enabled<span class="op">,</span> <span class="kw">readonly</span><span class="op">,</span> modified<span class="op">,</span> visible]<span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true"></a>        <span class="co">// State transitions. Initial state -&gt; transition -&gt; New state.</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true"></a>        trns <span class="op">:</span> [</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true"></a>            <span class="co">// Switch from on to off to on by click or touch. Add modified state.</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true"></a>            on <span class="op">-&gt;</span> lclick<span class="op">|</span>touch <span class="op">-&gt;</span> <span class="op">!</span>on<span class="op">&amp;</span>modified<span class="op">,</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true"></a>            <span class="op">!</span>on <span class="op">-&gt;</span> lclick<span class="op">|</span>touch <span class="op">-&gt;</span> on<span class="op">&amp;</span>modified<span class="op">,</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true"></a>            on<span class="op">&amp;</span>focus <span class="op">-&gt;</span> <span class="fu">key</span>(space) <span class="op">-&gt;</span> <span class="op">!</span>on<span class="op">&amp;</span>modified<span class="op">,</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true"></a>            <span class="op">!</span>on<span class="op">&amp;</span>focus <span class="op">-&gt;</span> <span class="fu">key</span>(space) <span class="op">-&gt;</span> on<span class="op">&amp;</span>modified</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true"></a>        ]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true"></a>    }<span class="op">,</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true"></a>    <span class="co">// Value of the object according to states</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true"></a>    value <span class="op">:</span> {</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true"></a>        on <span class="kw">=&gt;</span> @on<span class="op">|</span><span class="dv">1</span><span class="op">,</span>   <span class="co">// Default value of 1 if @on not specified   </span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true"></a>        _ <span class="kw">=&gt;</span> @off<span class="op">|</span><span class="dv">0</span>  <span class="co">// Default value of 0 if @off not specified   </span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true"></a>    }</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true"></a>    </span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true"></a>}</span></code></pre></div></div>
+<div class="copyl"><a href="https://www.nickelange.studio" class="nas">
+    <img src="https://avatars.githubusercontent.com/u/67743099?v=4" width="96" height="96"><br>NickelAnge<br>Studio 2023
+</a>
+</div>
+
+</body>
+</html>

@@ -9,12 +9,36 @@
   overflow: auto;
 }
 
+.copyl {
+  float: left;
+  position: absolute;
+  left: 52px;
+  bottom: 16px;
+}
+
+a.nas {
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-decoration: none;
+  font-size: smaller;
+}
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Sidebar links */
 .sidebar a {
   display: block;
   color: black;
   padding: 16px;
   text-decoration: none;
+  background-color: #f1f1f1;
+  
 }
 
 /* Active/current link */
@@ -22,6 +46,7 @@
   background-color: #fff;
   color: rgb(0, 0, 0);
   font-weight: bolder;
+  border-right: none;
 }
 
 /* Links on mouse-over */

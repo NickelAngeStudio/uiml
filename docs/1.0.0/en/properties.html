@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><title>UIML - Properties</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="User interface modeling language Properties specifications">
+    <meta name="keywords" content="UIML User interface modeling language Properties specifications">
+    <meta name="author" content="NickelAngeStudio">
+    <meta name="generator" content="bash pandoc">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../layout.css">
+    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css"/>
+</head>
+<body>
+
+
+<div class="sidebar">
+<img src="https://raw.githubusercontent.com/NickelAngeStudio/uiml/main/img/uiml.png" width="128" height="128" class="center">
+<a class="_home" href="index.html">Home</a><div class=""></div><a class="_component" href="component.html">Component</a><a class="_attributes" href="attributes.html">Attributes</a><a class="active" href="properties.html">Properties</a><a class="_rules" href="rules.html">Rules</a><a class="_localisation" href="localisation.html">Localisation</a><a class="_dataset" href="dataset.html">Dataset</a><a class="_implementation" href="implementation.html">Implementation</a><a class="_nomenclature" href="nomenclature.html">Nomenclature</a><a class="_styles" href="styles.html">Styles</a>
+</div>
+<div class="content markdown-body"><h1 id="properties">Properties</h1>
+<p>Properties are flag use to modify appearance and/or values. Properties are only added to component that declare them.</p>
+<p>There is a total of 64 possibles distinct properties per component. 32 are reserved, the rest is available to the developper. The limit is to be able to use bit shifting for better performance.</p>
+<h2 id="implied-properties">Implied properties</h2>
+<p>Those properties are added to all component by default.</p>
+<h3 id="visible"><strong>visible</strong></h3>
+<p>Component will be drawed only if this flag is added.</p>
+<h2 id="standard-properties">Standard properties</h2>
+<p>Those properties already come with their rules and are use to automate interactions.</p>
+<h3 id="hover"><strong>hover</strong></h3>
+<p>State added when mouse cursor is above component. State is removed when mouse leave component.</p>
+<h3 id="focus"><strong>focus</strong></h3>
+<p>Added when a component got the focus (ie by mousedown or by tab). Component can receive user input (mouse click, keyboard press, etc..) only if they are focused.</p>
+<h3 id="enabled"><strong>enabled</strong></h3>
+<p>Enabled component can be interacted with and can have properties and attributes changes.</p>
+<h3 id="modified"><strong>modified</strong></h3>
+<p>Added when a component value has been modified by user interaction. (Dataset changes should NOT trigger this property.)</p>
+<h3 id="animated"><strong>animated</strong></h3>
+<p>Component can play animations.</p>
+<h3 id="selected"><strong>selected</strong></h3>
+<p>Component is selected in list.</p>
+<h3 id="readonly"><strong>readonly</strong></h3>
+<p>Component is readonly. Rules that apply the modified flag are deactivated and the attribute value cannot be modified.</p></div>
+<div class="copyl"><a href="https://www.nickelange.studio" class="nas">
+    <img src="https://avatars.githubusercontent.com/u/67743099?v=4" width="96" height="96"><br>NickelAnge<br>Studio 2023
+</a>
+</div>
+
+</body>
+</html>
