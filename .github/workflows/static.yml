@@ -31,12 +31,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install pandoc
+        run: sudo apt-get install -y pandoc
+      - name: Generate HTML
+        run: bash docs/generate.sh
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
+          # Upload docs folder
           path: './docs'
       - name: Deploy to GitHub Pages
         id: deployment
