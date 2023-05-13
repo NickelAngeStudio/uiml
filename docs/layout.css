@@ -8,20 +8,34 @@
   height: 100%;
   overflow: auto;
 }
-
+/*
 .copyl {
   float: left;
   position: absolute;
-  left: 52px;
+  left: 36px;
   bottom: 16px;
+}
+*/
+
+img.nas_logo {
+  float: left;
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+}
+
+div.nas_name {
+  font-size: smaller;
+  margin-left: 1em;
 }
 
 a.nas {
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   display: inline-block;
   text-decoration: none;
-  font-size: smaller;
+  background-color: #f1f1f1;
+  color: black;
 }
 
 
