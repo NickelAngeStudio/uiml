@@ -5,23 +5,37 @@
     <meta name="author" content="NickelAngeStudio">
     <meta name="generator" content="bash pandoc">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../layout.css">
-    <link rel="stylesheet" href="../../highlight.css">
+    <link rel="stylesheet" href="../../css/sidebar.min.css">
+    <link rel="stylesheet" href="../../css/topbar.min.css">
+    <link rel="stylesheet" href="../../css/content.min.css">
+    <script src="../../js/script.min.js"></script> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css"/>
 </head>
 <body>
 
-
-<div class="sidebar">
-<img src="https://raw.githubusercontent.com/NickelAngeStudio/uiml/main/img/uiml.png" width="128" height="128" class="center">
-%sidebar
-<div class="copyl"><a href="https://www.nickelange.studio" class="nas">
-    <img src="https://avatars.githubusercontent.com/u/67743099?v=4" class="nas_logo"><div class="nas_name">NickelAnge<br>Studio 2023</div>
-</a>
+<div class="topbar no-print">
+    <a href="javascript:toggle_menu();" class="menu_link"><img src="../../img/menu_icon.svg" class="menu_icon"></a>
+    <a href="%prev_link" class="prev_link">%previous</a>
+    <div class="title">%section</div>
+    <a href="%next_link" class="next_link">%next</a>
 </div>
+
+<div id="sidebar" class="sidebar no-print">
+    <div class="header">
+        <a href="https://nickelangestudio.github.io/uiml/" class="nas">
+            <img src="https://raw.githubusercontent.com/NickelAngeStudio/uiml/main/img/uiml.png" class="uiml_logo">
+            <div class="logo_name">User interface<br>modeling language %version</div>
+        </a>
+    </div>
+    <div class="languages">%languages    
+        <a href="javascript:print_section();" class="print_link"><img src="../../img/print_icon.svg" class="print_icon"></a>
+    </div>
+    %sidebar
+    <div><a href="https://www.nickelange.studio" class="nas">
+        <img src="https://avatars.githubusercontent.com/u/67743099?v=4" class="nas_logo"><div class="logo_name">NickelAnge<br>Studio 2023</div>
+    </a>
+    </div>
 </div>
 <div class="content markdown-body">%content</div>
-
-
 </body>
 </html>

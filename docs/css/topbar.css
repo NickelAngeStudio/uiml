@@ -1,0 +1,86 @@
+/*
+@FILE
+topbar.css
+
+@DESCRIPTION
+Contains the topbar styles.
+
+@COPYRIGHT
+MIT
+
+@NickelAnge.Studio
+2023-05-13
+
+@REF
+https://www.w3schools.com/
+*/
+
+
+/* Top bar when screen is smaller */
+.topbar {
+  margin: 0;
+  padding: 0;
+  width: calc(100% - 16px);
+  background-color: #f1f1f1;
+  position: absolute;
+  visibility: hidden;
+  height: 2.5em;
+  overflow: hidden;
+  display: flex;
+}
+
+.topbar a.menu_link {
+  margin-left: 0.1em;
+  margin-right: 1em;
+}
+
+.topbar img.menu_icon {
+  width: 2em;
+  height: 2em;
+  margin-top: auto;
+  margin-bottom: auto;
+  position: relative;
+  top: 3px;
+  
+}
+
+.topbar div.languages {
+  display:flex;
+  font-size: smaller;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.topbar a.lng {
+  padding-right: 1em;
+  color: #e65c00;
+  padding: 0px;
+  margin-right: 1em;
+  text-decoration: underline;
+}
+
+.topbar a.lng.active {
+  color: #000000;
+  font-weight: bolder;
+  text-decoration: none;
+}
+
+.topbar a.prev_link, a.home_link, a.next_link {
+  font-size: smaller;
+  color: #e65c00;
+  text-decoration: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.topbar div.title {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.topbar a.next_link {
+  margin-right: 1em;
+}
