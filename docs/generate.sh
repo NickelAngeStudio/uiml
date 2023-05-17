@@ -250,9 +250,6 @@ write_previous_next_section(){
 
 # Get table of content
 get_table_of_content() {
-	#local toc="<div class=\"toc_content\" id=\"toc_content\"><a href=\"\" class=\"s h1\">Components</a><a href=\"\" class=\"s h2\">Syntax</a><a href=\"\" class=\"s h3\">Example</a></div>"
-
-	# Extract all section headers (h1 to h3) via grep
 	local headers=( $(echo "$f_content" | grep -P '<h[1-3].*>.*<\/h[1-3]>') )
 
 	# Accumulate and concatenete headers
@@ -276,41 +273,12 @@ get_table_of_content() {
 	done
 
 	
-
 	echo $toc
-}
-
-# Write table of content in sidebar
-write_table_of_content(){
-	# Length of elements in section names
-	local section_len=${#SECTION_NAMES[@]}
-
-	for (( i=0; i<$section_len; i++ )); do 
-		if [[ "$f_section" == "${SECTION_NAMES[$i]}" ]]; then
-			f_sidebar_section=$(echo "${f_sidebar_section//%HREF${SECTION_NAMES[$i]}/class=\"sidelink active\" id=\"sdactive\" href=\"javascript:toggle_toc();\"}") 
-			
-			local toc=$(get_table_of_content)
-			f_sidebar_section=$(echo "${f_sidebar_section//%TOC${SECTION_NAMES[$i]}/$toc}") 
-		else
-			if (( $i == 0 )) ; then		# Index 0 is always index.html
-				f_sidebar_section=$(echo "${f_sidebar_section//%HREF${SECTION_NAMES[$i]}/class=\"sidelink\" href=\"index.html\"}") 
-			else
-				f_sidebar_section=$(echo "${f_sidebar_section//%HREF${SECTION_NAMES[$i]}/class=\"sidelink\" href=\"${SECTION_NAMES[$i]}.html\"}") 
-			fi
-			f_sidebar_section=$(echo "${f_sidebar_section//%TOC${SECTION_NAMES[$i]}/''}") 
-		fi
-	done
-
-
 }
 
 ############
 # GENERATE #
 ############
-
-#    <div class="toc_content" id="toc_content">%toc</div>
-#        <a href="" class="s h1">Components</a><a href="" class="s h2">Syntax</a><a href="" class="s h3">Example</a></div>
-
 # Generate .min of css and js
 generate_min_files
 
