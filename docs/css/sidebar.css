@@ -108,7 +108,12 @@ https://www.w3schools.com/
   font-weight: bolder;
 }
 
+.sidebar a.sidelink.active.collapse {
+  padding-bottom: 16px;
+}
+
 .sidebar a.sidelink:hover:not(.active) {
   background-color: #e65c00;
   color: white;
 }
+

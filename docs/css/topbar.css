@@ -44,6 +44,20 @@ https://www.w3schools.com/
   
 }
 
+a.collapse_link {
+  margin: auto 0.5em auto 0em;
+
+}
+
+img.collapse_icon {
+  width: 1.5em;
+}
+
+.flipTY {
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
 .topbar div.languages {
   display:flex;
   font-size: smaller;
@@ -70,17 +84,10 @@ https://www.w3schools.com/
   font-size: smaller;
   color: #e65c00;
   text-decoration: none;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
 }
 
 .topbar div.title {
-  margin-left: auto;
-  margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.topbar a.next_link {
-  margin-right: 1em;
 }

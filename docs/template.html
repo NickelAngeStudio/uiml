@@ -18,7 +18,9 @@
     <a href="%prev_link" class="prev_link">%previous</a>
     <div class="title">%section</div>
     <a href="%next_link" class="next_link">%next</a>
+    <a href="javascript:toggle_tb_toc();" class="collapse_link"><img src="../../img/collapse_icon.svg" id="collapse_icon" class="collapse_icon"></a>
 </div>
+
 
 <div id="sidebar" class="sidebar no-print">
     <div class="header">
@@ -36,6 +38,8 @@
     </a>
     </div>
 </div>
+<div id="tocbar" class="tocbar no-print"><div id="toc_content">%toc</div></div>
+
 <div class="content markdown-body">%content</div>
 </body>
 </html>

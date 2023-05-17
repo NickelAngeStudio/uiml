@@ -19,22 +19,91 @@ https://pandoc.org/
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
   margin-left: 200px;
-  padding: 0px 16px;
+  margin-right: 200px;
+  padding: 0em 0em 0em 1em;
 }
 
+div.tocbar {
+  right: 0px;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #ffffff;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  display: block;
+}
 
-/* On screens that are less than 700px wide, switch to top bar */
-@media screen and (max-width: 700px) {
+div.toc_content {
+  margin: 0.5em 0.5em 0.5em 0em;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tocbar a.s {
+  font-size: 0.8em;
+  display:block;
+  width: fit-content;
+  color: blue;
+  text-decoration: none;
+  
+}
+
+.tocbar a.s:visited {
+  text-decoration: blue;
+}
+
+.tocbar a.s:hover {
+  text-decoration: underline;
+}
+
+.tocbar a.h2{
+  margin-left: 2em;
+}
+
+.tocbar a.h3 {
+  margin-left: 3em;
+}
+
+.tocbar a.h4 {
+  margin-left: 4em;
+}
+
+.tocbar a.h5 {
+  margin-left: 5em;
+}
+
+.tocbar a.h6 {
+  margin-left: 6em;
+}
+
+/* On screens that are less than 900px wide, switch to top bar */
+@media screen and (max-width: 900px) {
   .sidebar {
-    position: absolute;
+    position: fixed;
     top: 3.1em;
     z-index: 99 !important; /* Must be showed on top of content */
     display: none;
   }
 
+  div.tocbar {
+    position: fixed;
+    top: 3.1em;
+    display: none;
+    z-index: 99 !important; /* Must be showed on top of content */
+    overflow: hidden;
+    
+    right: 0.5em;
+    height: fit-content;
+    border: 1px solid #f1f1f1;
+  }
+
   .showed {
     display: block !important;
   }
+
+
 
   div.languages {
     margin-top: 1em;
@@ -47,9 +116,11 @@ div.content {
   .topbar {
     position: fixed;
     visibility: visible;
+    z-index: 99 !important; /* Must be showed on top of content */
   }
   div.content {
     margin-left: 0px;
+    margin-right: 0px;
     padding: 3em 16px;
   }
 }
@@ -64,6 +135,7 @@ div.content {
     }
     div.content {
       margin-left: 0px;
+      margin-right: 0px;
       padding: 0px;
     }
 }

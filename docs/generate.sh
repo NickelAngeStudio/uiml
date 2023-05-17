@@ -51,6 +51,9 @@ SECTION_NAMES=()
 # Array of sections titles
 SECTION_TITLES=()
 
+# Array of tags to remove in table of content
+TOC_TAG_REMOVE=("strong" "pre" "u" "ins" "p" "em")
+
 #############
 # FUNCTIONS #
 #############
@@ -122,7 +125,7 @@ generate_sidebar() {
 			local section_name=$(get_section_name "$file")
 
 			if [[ "$fileid" == "0000" ]]; then 
-				sidemenu="$sidemenu<a class=\"sidelink _${section}\" href=\"index.html\">${section_name^}</a><div class=\"\"></div>"
+				sidemenu="$sidemenu<a class=\"sidelink _${section}\" href=\"index.html\">${section_name^}</a>"
 			else
 				sidemenu="$sidemenu<a class=\"sidelink _${section}\" href=\"$section.html\">${section_name^}</a>"
 			fi
@@ -245,9 +248,69 @@ write_previous_next_section(){
 
 }
 
+# Get table of content
+get_table_of_content() {
+	#local toc="<div class=\"toc_content\" id=\"toc_content\"><a href=\"\" class=\"s h1\">Components</a><a href=\"\" class=\"s h2\">Syntax</a><a href=\"\" class=\"s h3\">Example</a></div>"
+
+	# Extract all section headers (h1 to h3) via grep
+	local headers=( $(echo "$f_content" | grep -P '<h[1-3].*>.*<\/h[1-3]>') )
+
+	# Accumulate and concatenete headers
+	local toc=""
+	for h in "${headers[@]}"
+	do 
+		toc="${toc}${h} "
+	done
+
+	# Remove tags
+	for tag in "${TOC_TAG_REMOVE[@]}"
+	do 
+		toc=$(echo "${toc//<$tag>/''}") 
+		toc=$(echo "${toc//<\/$tag>/''}") 
+	done
+
+	# Write headers
+	for (( i=0; i<6; i++ )); do 
+		toc=$(echo "${toc//h${i} id=\"/a class=\"s h${i}\" href=\"#}") 
+		toc=$(echo "${toc//<\/h${i}>/<\/a>}") 
+	done
+
+	
+
+	echo $toc
+}
+
+# Write table of content in sidebar
+write_table_of_content(){
+	# Length of elements in section names
+	local section_len=${#SECTION_NAMES[@]}
+
+	for (( i=0; i<$section_len; i++ )); do 
+		if [[ "$f_section" == "${SECTION_NAMES[$i]}" ]]; then
+			f_sidebar_section=$(echo "${f_sidebar_section//%HREF${SECTION_NAMES[$i]}/class=\"sidelink active\" id=\"sdactive\" href=\"javascript:toggle_toc();\"}") 
+			
+			local toc=$(get_table_of_content)
+			f_sidebar_section=$(echo "${f_sidebar_section//%TOC${SECTION_NAMES[$i]}/$toc}") 
+		else
+			if (( $i == 0 )) ; then		# Index 0 is always index.html
+				f_sidebar_section=$(echo "${f_sidebar_section//%HREF${SECTION_NAMES[$i]}/class=\"sidelink\" href=\"index.html\"}") 
+			else
+				f_sidebar_section=$(echo "${f_sidebar_section//%HREF${SECTION_NAMES[$i]}/class=\"sidelink\" href=\"${SECTION_NAMES[$i]}.html\"}") 
+			fi
+			f_sidebar_section=$(echo "${f_sidebar_section//%TOC${SECTION_NAMES[$i]}/''}") 
+		fi
+	done
+
+
+}
+
 ############
 # GENERATE #
 ############
+
+#    <div class="toc_content" id="toc_content">%toc</div>
+#        <a href="" class="s h1">Components</a><a href="" class="s h2">Syntax</a><a href="" class="s h3">Example</a></div>
+
 # Generate .min of css and js
 generate_min_files
 
@@ -285,13 +348,13 @@ for directory in */ ; do
 				f_index=$(get_fileindex "$file")
 				
 				# Get section name
-				f_section=$(get_section "$file")	
+				f_section=$(get_section "$file")
 
 				# Get section name
 				f_section_name=$(get_section_name "$file")			
 				
 				# Generate content html with pandoc
-				f_content=$(pandoc -f gfm "$file")
+				f_content=$(pandoc -f gfm "$file")	
 
 				# Path of the file
 				f_path="$f_section.html"
@@ -306,8 +369,12 @@ for directory in */ ; do
 				f_html=$(echo "${TEMPLATE//%section/${f_section_name^}}") 
 
 				# Generate side bar
-				f_sidebar_section=$(echo "${f_sidebar//_${f_section}/active}")
+				f_sidebar_section=$(echo "${f_sidebar//_${f_section}/active}") 
 				f_html=$(echo "${f_html//%sidebar/$f_sidebar_section}") 
+
+				#write_table_of_content	# Write table of content
+				toc_content=$(get_table_of_content)
+				f_html=$(echo "${f_html//%toc/$toc_content}") 
 
 				# Generate language
 				f_lng=""
