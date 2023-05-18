@@ -387,6 +387,7 @@ for directory in */ ; do
 			f_html=$(echo "${f_html//%languages/$f_lng}") 
 			f_html=$(echo "${f_html//%content/$f_all}") 
 			f_html=$(echo "${f_html//%version/$f_version}") 
+			f_html=$(echo "${f_html//%toc/''}") 
 
 			echo "Generating $language/all.html ..."
 			echo "$f_html" > "$(echo $dir)all.html"
