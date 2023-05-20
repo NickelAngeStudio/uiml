@@ -206,7 +206,7 @@ div.content {
 
 .topbar div.title {
   display: flex;
-  font-size:1.5em;
+  font-size:1em;
   justify-content:center;
   align-items: center;
   font-weight: bolder;
@@ -222,7 +222,7 @@ div.content {
 }
 
 .topbar a:not(.menu_link) {
-  font-size: smaller;
+  font-size: 0.9em;
   color: #0368e4;
   text-decoration: none;
   
