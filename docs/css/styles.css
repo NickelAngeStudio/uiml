@@ -206,7 +206,7 @@ div.content {
 
 .topbar div.title {
   display: flex;
-  font-size:1em;
+  font-size:1.5em;
   justify-content:center;
   align-items: center;
   font-weight: bolder;
@@ -282,6 +282,14 @@ div.content {
 
   div.tocbar {
     display: none;
+  }
+
+  .topbar div.title {
+    display: none;
+  }
+
+  .topbar div.next_link {
+    flex: 1;
   }
 
   a.colp {
