@@ -5,20 +5,20 @@
     <meta name="author" content="NickelAngeStudio">
     <meta name="generator" content="bash pandoc">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/sidebar.min.css">
-    <link rel="stylesheet" href="../../css/topbar.min.css">
-    <link rel="stylesheet" href="../../css/content.min.css">
+    <link rel="stylesheet" href="../../css/styles.min.css">
+    <link rel="stylesheet" href="../../css/highlight.min.css">
     <script src="../../js/script.min.js"></script> 
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sindresorhus/github-markdown-css@4/github-markdown.min.css"/>
+    
 </head>
 <body>
 
 <div class="topbar no-print">
     <a href="javascript:toggle_menu();" class="menu_link"><img src="../../img/menu_icon.svg" class="menu_icon"></a>
-    <a href="%prev_link" class="prev_link">%previous</a>
+    <div class="prev_link"><a href="%prev_link">%previous</a></div>
     <div class="title">%section</div>
-    <a href="%next_link" class="next_link">%next</a>
-    <a href="javascript:toggle_tb_toc();" class="collapse_link"><img src="../../img/collapse_icon.svg" id="collapse_icon" class="collapse_icon"></a>
+    <div class="next_link"><a href="%next_link">%next</a></div>
 </div>
 
 
@@ -38,8 +38,12 @@
     </a>
     </div>
 </div>
-<div id="tocbar" class="tocbar no-print"><div id="toc_content">%toc</div></div>
 
-<div class="content markdown-body">%content</div>
+<a href="javascript:toggle_ftoc();" class="colf no-print"><img src="../../img/collapse_icon.svg" id="colf_icon" class="colf_icon flipTY no-print"></a>
+<a href="javascript:toggle_ptoc();" class="colp no-print"><img src="../../img/collapse_icon.svg" id="colp_icon" class="colp_icon no-print"></a>
+<div id="tocbar" class="tocbar no-print">%toc</div>
+
+<div id="content" class="content markdown-body">%content</div>
+
 </body>
 </html>

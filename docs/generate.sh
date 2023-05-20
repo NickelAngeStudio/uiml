@@ -27,6 +27,9 @@ cd "$(dirname "$0")"
 # Page template located in template.html
 readonly TEMPLATE=$(<template.html)
 
+# All page template located in all.html
+readonly ALL=$(<all.html)
+
 # Image folder name
 readonly IMG_FOLDER="img"
 
@@ -125,10 +128,17 @@ generate_sidebar() {
 			local section_name=$(get_section_name "$file")
 
 			if [[ "$fileid" == "0000" ]]; then 
-				sidemenu="$sidemenu<a class=\"sidelink _${section}\" href=\"index.html\">${section_name^}</a>"
+				sidemenu="$sidemenu<a class=\"_${section}\" href=\"index.html\">${section_name^}</a>"
 			else
-				sidemenu="$sidemenu<a class=\"sidelink _${section}\" href=\"$section.html\">${section_name^}</a>"
+				sidemenu="$sidemenu<a class=\"_${section}\" href=\"$section.html\">${section_name^}</a>"
 			fi
+		else
+			local fileid=$(get_fileid "$file")
+			local section=$(get_section "$file")
+			
+			# Read first line to get section name
+			local section_name=$(get_section_name "$file")
+			sidemenu="$sidemenu<a class=\"sub _${section}\" href=\"$section.html\">${section_name^}</a>"
 		fi
 		
 	done
@@ -234,6 +244,7 @@ write_previous_next_section(){
 				f_html=$(echo "${f_html//%previous/&lt; ${SECTION_TITLES[$index]}}") 
 			else	# Empty previous
 				f_html=$(echo "${f_html//%previous/''}") 
+				f_html=$(echo "${f_html//%prev_link/''}") 
 			fi
 
 			if (( $i < $section_len-1 )) ; then	# Write next
@@ -241,7 +252,9 @@ write_previous_next_section(){
 				f_html=$(echo "${f_html//%next_link/${SECTION_NAMES[$index]}.html}") 
 				f_html=$(echo "${f_html//%next/${SECTION_TITLES[$index]} &gt;}") 
 			else	# Empty next
+				f_html=$(echo "${f_html//%next_link/''}") 
 				f_html=$(echo "${f_html//%next/''}") 
+				
 			fi
 		fi
 	done
@@ -351,7 +364,7 @@ for directory in */ ; do
 					if [[ "$lng" == "$language" ]]; then # Current language
 						f_lng="${f_lng}<a href="../$(echo $lng)/$f_path" class=\"lng active\">${lng^^}</a>"
 					else
-						f_lng="${f_lng}<a href="../$(echo $lng)/$f_path" class=\"lng\">${lng^^}</a>"
+						f_lng="${f_lng}<a href="../$(echo $lng)/$f_path" class=\"lng \">${lng^^}</a>"
 					fi
 				done
 				f_html=$(echo "${f_html//%languages/$f_lng}") 
@@ -366,29 +379,7 @@ for directory in */ ; do
 			done
 			
 			# Generate file html from template for all.html
-			f_html=$(echo "${TEMPLATE//%section/\"\"}") 
-			f_html=$(echo "${f_html//%sidebar/$f_sidebar}") 
-
-			# Generate language
-			f_lng=""
-			for lng in "${LANGUAGES[@]}"
-			do
-				if [[ "$lng" == "$language" ]]; then # Current language
-					f_lng="${f_lng}<a href="../$(echo $lng)/all.html" class=\"lng active\">${lng^^}</a>"
-				else
-					f_lng="${f_lng}<a href="../$(echo $lng)/all.html" class=\"lng\">${lng^^}</a>"
-				fi
-			done
-
-			# Remove previous and next
-			f_html=$(echo "${f_html//%previous/''}") 
-			f_html=$(echo "${f_html//%next/''}") 
-
-			f_html=$(echo "${f_html//%languages/$f_lng}") 
-			f_html=$(echo "${f_html//%content/$f_all}") 
-			f_html=$(echo "${f_html//%version/$f_version}") 
-			f_html=$(echo "${f_html//%toc/''}") 
-
+			f_html=$(echo "${ALL//%content/$f_all}") 
 			echo "Generating $language/all.html ..."
 			echo "$f_html" > "$(echo $dir)all.html"
 		done

@@ -6,35 +6,45 @@ function print_section(){
 /// Toggle side menu when using top bar
 function toggle_menu(){
     var sidebar = document.getElementById("sidebar");
-    if (sidebar.classList.contains('showed')) {
+    var content = document.getElementById("content");
+
+    if (sidebar.classList.contains('hide')) {
+        sidebar.classList.remove('hide');
+        content.classList.remove('fill');
         sidebar.classList.remove('showed');
     } else {
+        sidebar.classList.add('hide');
+        content.classList.add('fill');
         sidebar.classList.add('showed');
     }
 }
 
-/// Toggle table of content
-function toggle_toc(){
-    var toc = document.getElementById("toc_content");
-    var active = document.getElementById("sdactive");
-    if (toc.classList.contains('collapse')) {
-        toc.classList.remove('collapse');
-        active.classList.remove('collapse');
+/// Toggle table of content bar for full layout
+function toggle_ftoc(){
+
+    var collapse = document.getElementById("colf_icon");
+    var tocbar = document.getElementById("tocbar");
+
+    if (collapse.classList.contains('flipTY')) {
+        collapse.classList.remove('flipTY');
+        tocbar.classList.add('hide');
     } else {
-        toc.classList.add('collapse');
-        active.classList.add('collapse');
+        collapse.classList.add('flipTY');
+        tocbar.classList.remove('hide');
     }
 }
 
-/// Toggle table of content
-function toggle_tb_toc(){
-    var toc = document.getElementById("tocbar");
-    var icon = document.getElementById("collapse_icon");
-    if (toc.classList.contains('showed')) {
-        toc.classList.remove('showed');
-        icon.classList.remove('flipTY');
+/// Toggle table of content bar for partial layout
+function toggle_ptoc(){
+
+    var collapse = document.getElementById("colp_icon");
+    var tocbar = document.getElementById("tocbar");
+
+    if (collapse.classList.contains('flipTY')) {
+        collapse.classList.remove('flipTY');
+        tocbar.classList.remove('showed');
     } else {
-        toc.classList.add('showed');
-        icon.classList.add('flipTY');
+        collapse.classList.add('flipTY');
+        tocbar.classList.add('showed');
     }
 }
