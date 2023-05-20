@@ -1,6 +1,3 @@
 /.vscode
-\!/docs/index.html
-\!/docs/template.html
-\!/docs/all.html
 **.html
 *.min.*

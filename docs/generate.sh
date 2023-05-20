@@ -24,11 +24,14 @@ cd "$(dirname "$0")"
 #############
 # CONSTANTS #
 #############
-# Page template located in template.html
-readonly TEMPLATE=$(<template.html)
+# Redirect page template located in redirect.t
+readonly REDIRECT=$(<redirect.t)
 
-# All page template located in all.html
-readonly ALL=$(<all.html)
+# Page section template located in section.t
+readonly TEMPLATE=$(<section.t)
+
+# All page template located in all.t
+readonly ALL=$(<all.t)
 
 # Image folder name
 readonly IMG_FOLDER="img"
@@ -56,6 +59,9 @@ SECTION_TITLES=()
 
 # Array of tags to remove in table of content
 TOC_TAG_REMOVE=("strong" "pre" "u" "ins" "p" "em")
+
+# Latest version
+LATEST=""
 
 #############
 # FUNCTIONS #
@@ -300,7 +306,10 @@ for directory in */ ; do
 
 	f_version=$(echo "${directory}" | sed 's/\///g')
 
-	if [[ "$SPECIAL_FOLDER" != *"$f_version"* ]]; then # Make sure it isnt an special folder	
+	if [[ "$SPECIAL_FOLDER" != *"$f_version"* ]]; then # Make sure it isnt an special folder
+		# Set latest version	
+		LATEST=$f_version
+
 		# Init supported languages
 		init_languages $directory
 		
@@ -311,8 +320,6 @@ for directory in */ ; do
 
 			# Get array of sections files and names
 			get_section_files_and_names "$dir"
-
-			
 
 			# All documentation
 			f_all=""
@@ -386,6 +393,10 @@ for directory in */ ; do
 	fi
 done
 
+# Write redirection
+f_html=$(echo "${REDIRECT//%latest/$LATEST}") 
+echo "Generating redirection to latest version ..."
+echo "$f_html" > "index.html"
 
 
 

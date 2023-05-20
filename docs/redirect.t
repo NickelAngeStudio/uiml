@@ -1,6 +1,6 @@
 <script>
     // Latest version of document
-    const latest = "0.1.0/";
+    const latest = "%latest/";
 
     // List of currently supported translations
     const supported = ["en"];
@@ -34,7 +34,10 @@
 </head>
 <body>
 
-Redirecting to latest version... <a href="0.1.0/en">Click here if nothing happen</a>
+Redirecting to latest version... <a href="%latest/en">Click here if nothing happen</a>
 
 </body>
 </html>
+
+
+
